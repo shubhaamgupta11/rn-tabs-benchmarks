@@ -68,7 +68,7 @@ const TabsBenchmark = () => {
           </Pressable>
         </View>
         <Text>
-          {isFabricEnabled ? 'New Arch Enabled ' : 'Old Arch Enabled'}
+          {isFabricEnabled ? 'New Arch Enabled ' : 'Old Arch Enabled'} - {__DEV__ ? 'Debug Mode' : 'Release Mode'}
         </Text>
       </ScrollView>
     </SafeAreaView>
@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   container: {
+    flex: 1,
     alignItems: 'center',
     backgroundColor: 'white',
   },
