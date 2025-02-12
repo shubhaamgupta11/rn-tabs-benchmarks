@@ -1,13 +1,13 @@
 # RN BottomTab Benchmarks
 
-This repository benchmarks [**Native Bottom Tabs**](https://okwasniewski.github.io/react-native-bottom-tabs/) against [**JS Bottom Tabs**](https://reactnavigation.org/docs/bottom-tab-navigator/) based on performance metrics such as load time and tab switch time. The **Native Bottom Tab** library, developed by [okwasniewski](https://github.com/okwasniewski), serves as the foundation for the native tab implementation. All benchmarking is conducted using a **Native Stack** implementation.
+This repository benchmarks [**Native Bottom Tabs**](https://github.com/callstackincubator/react-native-bottom-tabs) against [**JS Bottom Tabs**](https://reactnavigation.org/docs/bottom-tab-navigator/) based on performance metrics such as load time and tab switch time. The **Native Bottom Tab** library, developed by [okwasniewski](https://github.com/okwasniewski), serves as the foundation for the native tab implementation. All benchmarking is conducted using a **Native Stack** implementation.
 
 - **Load Time**: Time taken to load the initial screen when a bottom tab is opened.
 - **Tab Switch Time**: Time taken to switch between tabs and display the next screen.
 
 ## About the Benchmarking Process 📝
 
-We are using the **Marco** tool to mark events and CLI tools provided by Marco to visualize the results.
+We are using the [**Marco**](https://marco.dreamsportslabs.com/) tool to mark events and CLI tools provided by Marco to visualize the results.
 
 ## Load Time ⌛
 
@@ -25,11 +25,11 @@ We are using the **Marco** tool to mark events and CLI tools provided by Marco t
 
 | Metric        | Native Bottom Tabs | JS Bottom Tabs |
 |--------------|------------------|------------------|
-| Load Time (ms) | **X ms** | **Y ms** |
+| Load Time (ms) | **357 ms** | **278 ms** |
 
-<img src="./assets/benchmarks/native_tab_load.png" alt="Native Load Time" width="400"/>
+<img src="./assets/benchmarks/native_tab_load.png" alt="Native Load Time" width="600"/>
 
-<img src="./assets/benchmarks/js_tab_load.png" alt="Native Load Time" width="400"/>
+<img src="./assets/benchmarks/js_tab_load.png" alt="JS Load Time" width="600"/>
 
 ## Tab Switch Time 🔄
 
@@ -47,11 +47,17 @@ We are using the **Marco** tool to mark events and CLI tools provided by Marco t
 
 | Metric        | Native Bottom Tabs | JS Bottom Tabs |
 |--------------|------------------|------------------|
-| Tab Switch Time (ms) | **X ms** | **Y ms** |
+| Tab Switch Time (ms) | **418 ms** | **375 ms** |
 
-<img src="./assets/benchmarks/native_tab_switch.png" alt="Native Load Time" width="400"/>
+<img src="./assets/benchmarks/native_tab_switch.png" alt="Native Tab Switch Time" width="600"/>
 
-<img src="./assets/benchmarks/js_tab_switch.png" alt="Native Load Time" width="400"/>
+<img src="./assets/benchmarks/js_tab_switch.png" alt="JS Tab Switch Time" width="600"/>
+
+> ### Device Details
+- **Low-end Android real device**
+- **Vivo Y15 OS 12, RAM 3 GB**
+
+> The Marco snapshota are stored inside: `reports/android/vivo/log.json`.
 
 ## How to Run the Benchmarks 🛠️
 
@@ -84,7 +90,7 @@ yarn android --mode=Release
 yarn get:numbers:android <iteration_count>
 ```
 
-This will run the iterations as mentioned in `src/scripts/automation/test.yaml`.
+This will run the test as described in `src/scripts/automation/test.yaml`.
 
 ### Generate and Visualize Report
 
@@ -98,19 +104,9 @@ yarn marco generate --platform android
 yarn marco visualize --platform android
 ```
 
-## Results
-
-### Device Details
-- **Low-end Android real device**
-- **Vivo Y15 OS 12, RAM 3 GB**
-
-The Marco snapshot is stored inside: `reports/android/pixel/log.json`.
-
-To visualize it again, run:
-
-```sh
-yarn marco visualize --platform android
-```
+This will open up a dashboard where we can select events to analyse data.
 
 > **Ensure the correct `dataDir` path is set in `marco.config.js`**.
+
+Happy Benchmarking!!
 

@@ -1,8 +1,8 @@
 module.exports = {
     android: {
       packageName: 'com.rntabsbenchmarks',
-      outputPath: './reports/android/pixel/',
-      dataDir: 'reports/android/pixel/log.json',
+      outputPath: './reports/android/vivo/',
+      dataDir: 'reports/android/vivo/log.json',
       port: '8080',
     },
     ios: {
