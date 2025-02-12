@@ -13,10 +13,10 @@ We are using the [**Marco**](https://marco.dreamsportslabs.com/) tool to mark ev
 <details><summary>Device details</summary>
 
     These benchmarks were conducted on different Android real devices:
-    - **Vivo Y15** (Low-end device)
+    - Vivo Y15 (Low-end device)
         - OS: Android 12
         - RAM: 3 GB
-    - **OnePlus Nord 2T** (High-end device)
+    - OnePlus Nord 2T (High-end device)
         - OS: Android 14
         - RAM: 8 GB
 </details>
@@ -47,7 +47,7 @@ We are using the [**Marco**](https://marco.dreamsportslabs.com/) tool to mark ev
 
 <img src="./assets/benchmarks/vivo/js_tab_load.png" alt="JS Load Time Vivo" width="600"/>
 
-<details ><summary>Click to View **Oneplus Load Time** Reports</summary>
+<details ><summary>Click to View Oneplus Load Time Reports</summary>
 <img src="./assets/benchmarks/oneplus/native_tab_load.png" alt="Native Load Time Oneplus" width="600"/>
 
 <img src="./assets/benchmarks/oneplus/js_tab_load.png" alt="JS Load Time Oneplus" width="600"/>
@@ -138,6 +138,17 @@ This will open up a dashboard where we can select events to analyse data.
 
 </details>
 
+## Summary 📌
+### Load Time:
 
-Happy Benchmarking!!
+- JS Bottom Tabs were **faster on low-end** devices (278ms vs. 357ms).
+- Native Bottom Tabs were **faster on high-end** devices (98ms vs. 122ms).
+
+### Tab Switch Time:
+
+- JS Bottom Tabs had a slight edge on low-end devices (375ms vs. 418ms).
+- Native Bottom Tabs were faster on high-end devices (92ms vs. 107ms).
+
+
+👉 Checkout [Marco](https://www.npmjs.com/package/@d11/marco) to benchmark more such scenarios.
 
