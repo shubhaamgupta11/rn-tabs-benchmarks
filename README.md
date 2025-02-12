@@ -1,97 +1,112 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# RN BottomTab Benchmarks
 
-# Getting Started
+This repository benchmarks [**Native Bottom Tabs**](https://okwasniewski.github.io/react-native-bottom-tabs/) against [**JS Bottom Tabs**](https://reactnavigation.org/docs/bottom-tab-navigator/) based on performance metrics such as load time and tab switch time. The **Native Bottom Tab** library, developed by [okwasniewski](https://github.com/okwasniewski), serves as the foundation for the native tab implementation. All benchmarking is conducted using a **Native Stack** implementation.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Benchmark Metrics 📊
 
-## Step 1: Start Metro
+- **Load Time**: Time taken to load the initial screen when a bottom tab is opened.
+- **Tab Switch Time**: Time taken to switch between tabs and display the next screen.
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## About the Benchmarking Process 📝
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+We are using **marco** tool to mark events and utilizing CLI tools provided by **marco** to visualize performance data.
 
-```sh
-# Using npm
-npm start
+## Load Time ⌛
 
-# OR using Yarn
-yarn start
+### 1. Capture the Initial Event
+- The event is triggered when a button is clicked to open a bottom tab.
+- The `timestamp` is extracted from the `Pressable.onPress` event object.
+- The `timestamp` and a marker name are passed to the native module `PerformanceTracker.track()` to log the start time.
+
+### 2. Track Screen Rendering
+- The load time completes when the initial screen content is fully painted and visible.
+- We wrapped the **Article Screen** with **PerformanceTracker API** from the **marco** library.
+- This accurately captures the **onDraw** event, indicating when the screen is fully rendered.
+
+## Tab Switch Time 🔄
+
+### 1. Capture the Tab Press Event
+- The event is captured when a tab is pressed.
+- The `timestamp` is obtained from listeners attached to the `tabPress` event at the screen level.
+- This `timestamp`, along with a marker name, is sent to `PerformanceTracker.track()` to log the start of the tab switch action.
+
+### 2. Track New Screen Rendering
+- The tab switch time completes when the new screen content is fully rendered and visible.
+- We wrapped the **Album Screen** with **PerformanceTracker API** from the **marco** library.
+- This accurately captures the **onDraw** event, marking the end of the tab switch process and the benchmark.
+
+## How to Run the Benchmarks 🛠️
+
+### Prerequisites
+
+1. [React Native Environment Setup](https://reactnative.dev/docs/next/environment-setup)
+2. [Maestro Setup](https://maestro.mobile.dev/)  
+   To check if Maestro is installed on your system, run the command:
+   ```bash
+   maestro --version
+   ```
+
+### Setup
+
+```bash
+git clone git@github.com:shubhaamgupta11/rn-tabs-benchmarks.git
+cd rn-tabs-benchmarks
+yarn install
 ```
 
-## Step 2: Build and run your app
+### Create Release Build
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
+```bash
+yarn android --mode=Release
 ```
 
-### iOS
+### Run the Benchmarks
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
+```bash
+yarn get:numbers:android <iteration_count>
 ```
 
-Then, and every time you update your native dependencies, run:
+This will run the iteration count as specified in `src/scripts/automation/test.yaml`.
 
-```sh
-bundle exec pod install
+### Generate and Visualize Report
+
+A config file `marco.config.js` contains default paths to store reports. These paths can be customized as needed.
+
+#### Generate Report
+
+```bash
+yarn marco generate --platform android
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+#### Visualize Report
 
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+```bash
+yarn marco visualize --platform android
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## Results 📈
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+### Device Details (Android)
+- **Device:** Low-end Android real device
+- **Model:** Vivo Y15
+- **OS:** Android 12
+- **RAM:** 3 GB
 
-## Step 3: Modify your app
+### Report Location
 
-Now that you have successfully run the app, let's make changes!
+The benchmarking report is stored inside:
+```
+reports/android/pixel/log.json
+```
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+To visualize the report again, run:
+```bash
+yarn marco visualize --platform android
+```
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+> **Note:** Ensure the correct `dataDir` path is set in `marco.config.js` for proper visualization.
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+---
 
-## Congratulations! :tada:
+This benchmarking framework provides insights into the efficiency of Native and JS Bottom Tabs, helping developers optimize their React Native applications for better performance.
 
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
