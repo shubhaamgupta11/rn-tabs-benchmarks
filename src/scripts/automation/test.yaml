@@ -1,0 +1,32 @@
+# test.yaml
+appId: ${APP_ID}
+---
+- launchApp:
+    clearState: true
+- tapOn:
+    id: "reset_logs"
+    retryTapIfNoChange: false
+    waitToSettleTimeoutMs: 1000
+- repeat:
+    times: ${ITERATIONS}
+    commands:
+      - tapOn: 
+          id: "native_bottom_tab_benchmarks"
+      - assertVisible: 
+          text: "What is Lorem Ipsum?"
+      - tapOn: "Albums"
+      - assertVisible:
+          text: "Album Screen Displayed"
+      - tapOn: "Pop To Top"
+- repeat:
+    times: ${ITERATIONS}
+    commands:
+      - tapOn: 
+          id: "js_bottom_tab_benchmarks"
+      - assertVisible: 
+          text: "What is Lorem Ipsum?"
+      - tapOn: 
+          id: "Albums"
+      - assertVisible:
+          text: "Album Screen Displayed"
+      - tapOn: "Pop To Top"
