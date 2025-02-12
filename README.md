@@ -10,18 +10,21 @@ This repository benchmarks [**Native Bottom Tabs**](https://github.com/callstack
 
 We are using the [**Marco**](https://marco.dreamsportslabs.com/) tool to mark events and CLI tools provided by Marco to visualize the results.
 
-> ### These benchmarks were conducted on different Android real devices:
-- **Vivo Y15** (Low-end device)
-    - OS: Android 12
-    - RAM: 3 GB
-- **OnePlus Nord 2T** (High-end device)
-    - OS: Android 14
-    - RAM: 8 GB
+<details><summary>Device details</summary>
+
+    These benchmarks were conducted on different Android real devices:
+    - **Vivo Y15** (Low-end device)
+        - OS: Android 12
+        - RAM: 3 GB
+    - **OnePlus Nord 2T** (High-end device)
+        - OS: Android 14
+        - RAM: 8 GB
+</details>
 
 ## Load Time ⌛
 
 1. **Capture the Initial Event:**
-   - The event is triggered when a button is clicked to open a bottom tab. (refer: [Native]((https://github.com/shubhaamgupta11/rn-tabs-benchmarks/blob/7577609fb6eeaa78768a651e968b07ca2bc0d24f/src/TabsBenchmark.tsx#L23)) & [JS](https://github.com/shubhaamgupta11/rn-tabs-benchmarks/blob/7577609fb6eeaa78768a651e968b07ca2bc0d24f/src/TabsBenchmark.tsx#L31))
+   - The event is triggered when a button is clicked to open a bottom tab. (refer: [Native](https://github.com/shubhaamgupta11/rn-tabs-benchmarks/blob/7577609fb6eeaa78768a651e968b07ca2bc0d24f/src/TabsBenchmark.tsx#L23) & [JS](https://github.com/shubhaamgupta11/rn-tabs-benchmarks/blob/7577609fb6eeaa78768a651e968b07ca2bc0d24f/src/TabsBenchmark.tsx#L31))
    - The `timestamp` is extracted from the `Pressable.onPress` event object.
    - The `timestamp` and a marker name are passed to the native module `PerformanceTracker.track()` to log the start time.
 
@@ -29,23 +32,25 @@ We are using the [**Marco**](https://marco.dreamsportslabs.com/) tool to mark ev
    - The load time completes when the initial screen content is fully painted and visible.
    - We wrapped the **Article Screen** with the **PerformanceTracker** API from the **Marco** library.
    - This accurately captures the **onDraw** event, indicating when the screen is fully rendered.
-   - Code [reference]((https://github.com/shubhaamgupta11/rn-tabs-benchmarks/blob/7577609fb6eeaa78768a651e968b07ca2bc0d24f/src/Screens/Article.tsx#L51))
+   - Code [reference](https://github.com/shubhaamgupta11/rn-tabs-benchmarks/blob/7577609fb6eeaa78768a651e968b07ca2bc0d24f/src/Screens/Article.tsx#L51)
 
 ### Load Time Comparison (Native vs JS)
 
 | Device        | Native Bottom Tabs | JS Bottom Tabs |
 |--------------|------------------|------------------|
-| Android VIVO | **357 ms** | **278 ms** |
-| Android OnePlus | **98 ms** | **122 ms** |
+| Vivo (low-end) | **357 ms** | **278 ms** |
+| OnePlus (high-end) | **98 ms** | **122 ms** |
+
+### Marco reports for Vivo
 
 <img src="./assets/benchmarks/vivo/native_tab_load.png" alt="Native Load Time Vivo" width="600"/>
 
 <img src="./assets/benchmarks/vivo/js_tab_load.png" alt="JS Load Time Vivo" width="600"/>
 
-<details ><summary>Click to View Oneplus Load Time Reports</summary>
-<img src="./assets/benchmarks/oneplus/native_tab_load.png" alt="Native Load Time Vivo" width="600"/>
+<details ><summary>Click to View **Oneplus Load Time** Reports</summary>
+<img src="./assets/benchmarks/oneplus/native_tab_load.png" alt="Native Load Time Oneplus" width="600"/>
 
-<img src="./assets/benchmarks/oneplus/js_tab_load.png" alt="JS Load Time Vivo" width="600"/>
+<img src="./assets/benchmarks/oneplus/js_tab_load.png" alt="JS Load Time Oneplus" width="600"/>
 </details>
 
 ## Tab Switch Time 🔄
@@ -59,23 +64,25 @@ We are using the [**Marco**](https://marco.dreamsportslabs.com/) tool to mark ev
    - The tab switch time completes when the new screen content is fully rendered and visible.
    - We wrapped the **Album Screen** with the **PerformanceTracker** API from the **Marco** library.
    - This accurately captures the **onDraw** event, marking the end of the tab switch process and the benchmark.
-   - Code [refernce](https://github.com/shubhaamgupta11/rn-tabs-benchmarks/blob/7577609fb6eeaa78768a651e968b07ca2bc0d24f/src/Screens/Albums.tsx#L57)
+   - Code [reference](https://github.com/shubhaamgupta11/rn-tabs-benchmarks/blob/7577609fb6eeaa78768a651e968b07ca2bc0d24f/src/Screens/Albums.tsx#L57)
 
 ### Tab Switch Time Comparison (Native vs JS)
 
 | Device        | Native Bottom Tabs | JS Bottom Tabs |
 |--------------|------------------|------------------|
-| Android VIVO | **418 ms** | **375 ms** |
-| Android Oneplus | **92 ms** | **107 ms** |
+| Vivo (low-end) | **418 ms** | **375 ms** |
+| Oneplus (high-end)| **92 ms** | **107 ms** |
+
+### Marco reports for Vivo
 
 <img src="./assets/benchmarks/vivo/native_tab_switch.png" alt="Native Tab Switch Time Vivo" width="600"/>
 
 <img src="./assets/benchmarks/vivo/js_tab_switch.png" alt="JS Tab Switch Time Vivo" width="600"/>
 
 <details > <summary>Click to View Oneplus Tab Switch Reports</summary>
-<img src="./assets/benchmarks/oneplus/native_tab_switch.png" alt="Native Tab Switch Time Vivo" width="600"/>
+<img src="./assets/benchmarks/oneplus/native_tab_switch.png" alt="Native Tab Switch Time Oneplus" width="600"/>
 
-<img src="./assets/benchmarks/oneplus/js_tab_switch.png" alt="JS Tab Switch Time Vivo" width="600"/> </details>
+<img src="./assets/benchmarks/oneplus/js_tab_switch.png" alt="JS Tab Switch Time Oneplus" width="600"/> </details>
 
 > The Marco snapshots are stored inside: `reports/android/<device>/log.json`.
 
