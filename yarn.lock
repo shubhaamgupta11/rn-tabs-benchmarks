@@ -1499,9 +1499,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@d11/marco@npm:^0.0.5":
-  version: 0.0.5
-  resolution: "@d11/marco@npm:0.0.5"
+"@d11/marco@npm:^0.0.6":
+  version: 0.0.6
+  resolution: "@d11/marco@npm:0.0.6"
   dependencies:
     commander: ^12.1.0
     cosmiconfig: ^9.0.0
@@ -1511,7 +1511,7 @@ __metadata:
     react-native: "*"
   bin:
     marco: src/scripts/cli.js
-  checksum: da83ef33d6cfc517413cfcec42497f19417fca20d354dc7f4c1d5067369f3511575ee12635c5f95537e495325faa9fd31d19fcee3875023a78bdf59fd52f692d
+  checksum: fa074b1933ba3bbbe28a83ee376f1d68134e5586e599d2d105958bf1aeeb4e0fb35a6c485036957dcc21d1d639a3deb0aa2124263419c8e73a8773026a88242b
   languageName: node
   linkType: hard
 
@@ -8734,7 +8734,7 @@ __metadata:
     "@babel/preset-env": ^7.25.3
     "@babel/runtime": ^7.25.0
     "@bottom-tabs/react-navigation": ^0.6.0
-    "@d11/marco": ^0.0.5
+    "@d11/marco": ^0.0.6
     "@react-native-community/cli": 15.0.1
     "@react-native-community/cli-platform-android": 15.0.1
     "@react-native-community/cli-platform-ios": 15.0.1
